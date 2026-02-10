@@ -5,6 +5,8 @@ import br.com.erudio.model.Exchange;
 import br.com.erudio.repository.ExchangeRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,8 @@ public class ExchangeController {
 
     @Autowired
     ExchangeRepository repository;
+
+    private final Logger logger = LoggerFactory.getLogger(ExchangeController.class);
 /*
     @GetMapping(value = "/{amount}/{from}/{to}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Exchange getExchange(
@@ -40,6 +44,9 @@ public class ExchangeController {
             @PathVariable("amount") BigDecimal amount,
             @PathVariable("from") String from,
             @PathVariable("to") String to) {
+
+        logger.info("getEchanged is called with -> {}, {}, {}",amount, from, to);
+
         Exchange exchange = repository.findByFromAndTo(from, to);
 
         if (exchange == null) {
