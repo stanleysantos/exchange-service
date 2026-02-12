@@ -45,7 +45,7 @@ public class ExchangeController {
             @PathVariable("from") String from,
             @PathVariable("to") String to) {
 
-        logger.info("getEchanged is called with -> {}, {}, {}",amount, from, to);
+        logger.info("getExchanged is called with -> {}, {}, {}",amount, from, to);
 
         Exchange exchange = repository.findByFromAndTo(from, to);
 
